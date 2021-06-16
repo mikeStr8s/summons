@@ -11,10 +11,33 @@
   <body>
     <canvas id="bg"></canvas>
     <main>
-      <section>
-        <h1>Your summons has come.</h1>
-      </section>
+      <div class="grid-container">
+        <div class="grid-top"></div>
+        <div class="grid-content">
+          <h1>You've Been Summoned</h1>
+          <div class="timer">
+            <p id="day-num">Day#</p>
+            <p id="hour-num">Hour#</p>
+            <p id="minute-num">Minute#</p>
+            <p id="second-num">Second#</p>
+            <p>Days</p>
+            <p>Hours</p>
+            <p>Minutes</p>
+            <p>Seconds</p>
+          </div>
+        </div>
+        <div class="grid-bot"></div>
+      </div>
     </main>
+    
+    <!-- <main>
+      <section class="grid-item"></section>
+      <section class="grid-item">
+        <h1>The Summoning Circle Has Been Drawn.</h1>
+        <h1>HH:MM:SS</h1>
+      </section>
+      <section class="grid-item"></section>
+    </main> -->
     <script type="module" src="/index.js"></script>
   </body>
 </html>
