@@ -53,6 +53,17 @@ main {
   grid-template-columns: repeat(4, auto);
   grid-template-rows: auto auto;
   column-gap: 25px;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #00000050;
+  padding: 10px;
+}
+
+.timer-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* section {
