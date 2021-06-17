@@ -7,31 +7,27 @@
     <title>Vite App</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/summons/assets/index.8bb4b0bf.js"></script>
+  <script type="module" crossorigin src="/summons/assets/index.c44a552b.js"></script>
   <link rel="modulepreload" href="/summons/assets/vendor.fd160b33.js">
-  <link rel="stylesheet" href="/summons/assets/index.b2bda563.css">
+  <link rel="stylesheet" href="/summons/assets/index.c8b9368c.css">
 </head>
   <body>
     <canvas id="bg"></canvas>
-    <main>
-      <div class="grid-container">
-        <div class="grid-top"></div>
-        <div class="grid-content">
-          <h1>You've Been Summoned</h1>
-          <div class="timer">
-            <div class="timer-item" id="day-num">Day#</div>
-            <div class="timer-item" id="hour-num">Hour#</div>
-            <div class="timer-item" id="minute-num">Minute#</div>
-            <div class="timer-item" id="second-num">Second#</div>
-            <div class="timer-item">Days</div>
-            <div class="timer-item">Hours</div>
-            <div class="timer-item">Minutes</div>
-            <div class="timer-item">Seconds</div>
-          </div>
-        </div>
-        <div class="grid-bot"></div>
+    <div class="container">
+      <div class="header">
+        <h1>You have been summoned.</h1>
       </div>
-    </main>
+      <div class="timer">
+          <span id="day-num" class="timer-item value day-val">##</span>
+          <span id="hour-num" class="timer-item value hour-val">##</span>
+          <span id="minute-num" class="timer-item value minute-val">##</span>
+          <span id="second-num" class="timer-item value second-val">##</span>
+          <span class="timer-item unit day-unit">Days</span>
+          <span class="timer-item unit hour-unit">Hours</span>
+          <span class="timer-item unit minute-unit">Minutes</span>
+          <span class="timer-item unit second-unit">Seconds</span>
+      </div>
+    </div>
     
   </body>
 </html>
