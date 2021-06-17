@@ -10,25 +10,21 @@
   </head>
   <body>
     <canvas id="bg"></canvas>
-    <main>
-      <div class="grid-container">
-        <div class="grid-top"></div>
-        <div class="grid-content">
-          <h1>You've Been Summoned</h1>
-          <div class="timer">
-            <div class="timer-item" id="day-num">Day#</div>
-            <div class="timer-item" id="hour-num">Hour#</div>
-            <div class="timer-item" id="minute-num">Minute#</div>
-            <div class="timer-item" id="second-num">Second#</div>
-            <div class="timer-item">Days</div>
-            <div class="timer-item">Hours</div>
-            <div class="timer-item">Minutes</div>
-            <div class="timer-item">Seconds</div>
-          </div>
-        </div>
-        <div class="grid-bot"></div>
+    <div class="container">
+      <div class="header">
+        <h1>You have been summoned.</h1>
       </div>
-    </main>
+      <div class="timer">
+          <span id="day-num" class="timer-item value day-val">##</span>
+          <span id="hour-num" class="timer-item value hour-val">##</span>
+          <span id="minute-num" class="timer-item value minute-val">##</span>
+          <span id="second-num" class="timer-item value second-val">##</span>
+          <span class="timer-item unit day-unit">Days</span>
+          <span class="timer-item unit hour-unit">Hours</span>
+          <span class="timer-item unit minute-unit">Minutes</span>
+          <span class="timer-item unit second-unit">Seconds</span>
+      </div>
+    </div>
     <script type="module" src="/index.js"></script>
   </body>
 </html>

@@ -1,9 +1,9 @@
 import './style.css';
 import * as THREE from 'three';
-import { createOriginHelper, createRitualCircle, initWorld, load3dModel } from './functions';
+import { createRitualCircle, initWorld, load3dModel } from './functions';
 import { TREE_COORDS } from './constants';
 
-const { scene, camera, renderer } = initWorld();
+const { scene, camera, renderer, canvas } = initWorld();
 
 scene.fog = new THREE.Fog(0x000000, 1, 10);
 camera.position.set(0, .75, 0.5);
@@ -20,19 +20,6 @@ for (let idx = 0; idx < TREE_COORDS.length; idx++) {
   const randTree = Math.floor(Math.random() * 5) + 1;
   const randRot = Math.floor(Math.random() * 360) + 1;
   const coords = { x: TREE_COORDS[idx].x, y: 0, z: TREE_COORDS[idx].z + 10 };
-  const rot = { x: 0, y: randRot, z: 0 };
-  const obj_name = `models/CommonTree_Dead_${randTree}.obj`;
-  const mtl_name = `models/CommonTree_Dead_${randTree}.mtl`;
-
-  load3dModel(obj_name, mtl_name, scene, coords, rot, 4, 0);
-}
-
-for (let idx = 0; idx < 50; idx++) {
-  const randTree = Math.floor(Math.random() * 5) + 1;
-  const randRot = Math.floor(Math.random() * 360) + 1;
-  const randX = idx % 2 === 0 ? Math.random() * 1000 / 100 : Math.random() * 1000 / 100 * -1;
-  const randZ = Math.random() * 1000 / 100 * -1;
-  const coords = { x: randX, y: 0, z: randZ - 5 };
   const rot = { x: 0, y: randRot, z: 0 };
   const obj_name = `models/CommonTree_Dead_${randTree}.obj`;
   const mtl_name = `models/CommonTree_Dead_${randTree}.mtl`;
@@ -93,9 +80,12 @@ const hourElem = document.querySelector('#hour-num');
 const minuteElem = document.querySelector('#minute-num');
 const secondElem = document.querySelector('#second-num');
 
+canvas.style.width = '100%';
+canvas.style.height = '100%';
+
 function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene, camera);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
 
   const now = new Date();
   const then = new Date('2021-08-01T16:00:00+04:00');
@@ -107,6 +97,10 @@ function animate() {
   minuteElem.innerHTML = Math.floor(diff / 60000);
   diff = diff % 60000;
   secondElem.innerHTML = Math.floor(diff / 1000);
+
+  renderer.render(scene, camera);
+
+  requestAnimationFrame(animate);
 }
 
 animate();
