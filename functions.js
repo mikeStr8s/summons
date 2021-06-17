@@ -1,5 +1,4 @@
 import * as THREE from "three";
-import { MeshLine, MeshLineMaterial, MeshLineRaycast } from "meshline";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 
@@ -61,12 +60,23 @@ const createRing = (inner, outer, segments, options) => {
   return new THREE.Mesh(ring_geo, ring_mat);
 };
 
-const createLine = (x1, x2, y1, y2) => {
-  const line_geo = new MeshLine();
-  line_geo.setPoints([new THREE.Vector3(x1, y1, 0), new THREE.Vector3(x2, y2, 0)]);
-  const line_mat = new MeshLineMaterial({ color: 0xFF0000, lineWidth: 0.01, fog: true });
-  return new THREE.Mesh(line_geo, line_mat);
+const createPlane = (width, height, options) => {
+  const plane_geo = new THREE.PlaneGeometry(width, height);
+  const plane_mat = new THREE.MeshBasicMaterial(options);
+  return new THREE.Mesh(plane_geo, plane_mat);
 };
+
+const calculateMidpoint = (x1, x2, y1, y2) => {
+  return { x: (x1+x2)/2, y: (y1+y2)/2 };
+};
+
+const calculateDistance = (x1, x2, y1, y2) => {
+  return Math.sqrt(Math.pow((x2-x1), 2) + Math.pow((y2-y1), 2));
+};
+
+const calculateRotation = (x1, x2, y1, y2) => {
+  return Math.atan2((y2-y1), (x2-x1));
+}
 
 export const createRitualCircle = () => {
   const ritual_group = new THREE.Group();
@@ -89,9 +99,15 @@ export const createRitualCircle = () => {
 
     const small_ring = createRing(0.1, 0.08, 128, opts);
     small_ring.position.set(ring_coords.x, ring_coords.y, 0);
-
     ritual_group.add(small_ring)
-    ritual_group.add(createLine(star_coords.x1, star_coords.x2, star_coords.y1, star_coords.y2));
+    
+    const line_mp = calculateMidpoint(star_coords.x1, star_coords.x2, star_coords.y1, star_coords.y2);
+    const line_dist = calculateDistance(star_coords.x1, star_coords.x2, star_coords.y1, star_coords.y2);
+    const line_rot = calculateRotation(star_coords.x1, star_coords.x2, star_coords.y1, star_coords.y2);
+    const star_line = createPlane(0.02, line_dist, { color: 0xFF0000, side: THREE.DoubleSide });
+    star_line.position.set(line_mp.x, line_mp.y);
+    star_line.rotateZ(line_rot - (90 * Math.PI / 180));
+    ritual_group.add(star_line);
   }
   return ritual_group;
 };
