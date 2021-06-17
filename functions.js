@@ -3,9 +3,10 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
 
 export const initWorld = () => {
+  const canvas = document.querySelector("#bg");
   const scene = new THREE.Scene;
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ canvas: document.querySelector('#bg') });
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas });
 
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
@@ -13,7 +14,7 @@ export const initWorld = () => {
   const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
   scene.add(ambientLight);
 
-  return { scene, camera, renderer };
+  return { scene, camera, renderer, canvas };
 };
 
 export const load3dModel = (objFile, mtlFile, scene, coords, rot, scale, shine) => {
