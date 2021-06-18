@@ -11,7 +11,7 @@ export const initWorld = () => {
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
 
-  const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
+  const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.75);
   scene.add(ambientLight);
 
   return { scene, camera, renderer, canvas };
