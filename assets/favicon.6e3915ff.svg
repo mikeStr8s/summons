@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+    <polygon 
+        points="
+            115,0
+            230,200
+            0,200"
+        style="fill:#202020"
+    />
+    <polygon 
+        points="
+            230,200
+            0,200
+            115,300"
+        style="fill:#101010"
+    />
+    <polygon 
+        points="
+            115,0
+            0,200
+            25,60"
+        style="fill:#404040"
+    />
+    <polygon 
+        points="
+            115,0
+            230,200
+            205,60"
+        style="fill:#000000"
+    />
+</svg>
